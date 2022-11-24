@@ -3,6 +3,7 @@ import {swagLabsPage} from "./LizziePageObject";
 import {Builder, By, Capabilities, until, WebDriver, WebElement} from "selenium-webdriver";
 
 const driver: WebDriver = new Builder().withCapabilities(Capabilities.chrome()).build();
+
 const swag = new swagLabsPage(driver);
 
 describe("Lizzie's test for Swag Labs webpage", () => {

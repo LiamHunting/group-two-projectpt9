@@ -22,10 +22,12 @@ export class swagLabsPage {
     constructor(driver: WebDriver) {
         this.driver = driver;
     };
+
     async navigate() {
         await this.driver.get(this.url);
         await this.driver.wait(until.elementLocated(this.bot));
     };
+    
     async login() {
         await this.driver.wait(until.elementLocated(this.bot));
         await this.driver.findElement(this.userNameIpt).click();
