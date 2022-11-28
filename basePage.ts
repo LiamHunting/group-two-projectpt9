@@ -38,8 +38,9 @@ export class BasePage {
 
     async setInput(elementBy: By, keys: any): Promise<void> {
         let input = await this.getElement(elementBy);
+        await input.click();
         await input.clear();
-        return input.sendKeys();
+        return input.sendKeys(keys);
     }
 
     async getText(elementBy: By): Promise<string> {
