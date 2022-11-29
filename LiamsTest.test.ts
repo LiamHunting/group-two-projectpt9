@@ -1,5 +1,6 @@
 import {BasePage} from "./basePage";
-import { swagLabsPage } from "./Liam'sBasePage";
+import { AcceptedUsers } from "./LiamsLoginInfoPage";
+import { swagLabsPage } from "./LiamsBasePage";
 import {Builder, By, Capabilities, until, WebDriver, WebElement} from "selenium-webdriver"
 
 const driver: WebDriver = new Builder().withCapabilities(Capabilities.chrome()).build();
@@ -14,19 +15,27 @@ describe("Test for SwagLabs Webpage", () => {
         await driver.quit();
     });
 
-    test("Loggin in", async () => {
+    test("Loggin in using accepted usernames", async () => {
+        
+        for (let i = 0; i < AcceptedUsers.length; i++ ) {
         await driver.wait(until.elementLocated(swagP.bot));
         await driver.findElement(swagP.userNameIpt).click();
         await driver.findElement(swagP.userNameIpt).clear();
-        await driver.findElement(swagP.userNameIpt).sendKeys("standard_user");
+        console.log(AcceptedUsers.at(i));
+        let user = AcceptedUsers.at(i);
+        await driver.findElement(swagP.userNameIpt).sendKeys(`${user}`);
         await driver.findElement(swagP.passwordIpt).click();
         await driver.findElement(swagP.passwordIpt).clear();
         await driver.findElement(swagP.passwordIpt).sendKeys("secret_sauce");
         await driver.findElement(swagP.loginBtn).click();
-        await driver.wait(until.elementLocated(swagP.appLogo));
-        
+        await driver.findElement(swagP.menuBtn).click();
+        await driver.findElement(swagP.logoutBtn).click();
+
+        }
+
     });
     test("login method functionality", async () => {
         await swagP.login();
     });
+
 });
