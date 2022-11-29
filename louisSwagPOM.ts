@@ -6,6 +6,7 @@ header: By= By.css('.login_wrapper')
 addUserName: By = By.xpath('//input[@name= "user-name"]')
 addPassword: By = By.xpath('//input[@name= "password"]')
 loginBtn: By = By.xpath('//input[@name= "login-button"]')
+inventoryItem: By = By.css('inventory_item_name')
 menuBtn: By = By.css('bm-burger-button')
 allItemsBtn: By =By.css('bm-item-list')
 logoutBtn: By = By.css('logout_sidebar_link')// Cannot seem to find the correct selector 
@@ -35,5 +36,5 @@ async setInput(elementBy: By, keys:any):Promise<void>{
     await input.click()
     await input.clear()
     return input.sendKeys(keys)
-}
-}
+};
+};
