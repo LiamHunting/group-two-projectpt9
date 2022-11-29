@@ -29,12 +29,29 @@ import { swagMenuLO} from "./louisSwagPOM";
             await driver.findElement(menPage.addPassword).clear();
             await driver.findElement(menPage.addPassword).sendKeys("secret_sauce");
             await driver.findElement(menPage.loginBtn).click();
-            await driver.findElement(menPage.inventoryItem).click();
             await driver.findElement(menPage.menuBtn).click();
             await driver.findElement(menPage.logoutBtn).click();
-
-
         });
+           /* describe(" an item page", () =>{
+                beforeEach(async ()=>{
+                    await menPage.navigate();
+                })
+                afterAll(async () => {
+                    await driver.quit();
+                })
+            })*/
+
+            test("navigating to an item page", async () =>{
+                await menPage.setInput(menPage.addUserName, "standard_user");
+                await menPage.setInput(menPage.addPassword, "secret_sauce");
+                await menPage.click(menPage.loginBtn);
+                await menPage.click(menPage.inventoryItem);
+            })
+
+
+
+
+        
     });
     
     
