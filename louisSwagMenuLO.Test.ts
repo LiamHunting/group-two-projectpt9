@@ -46,7 +46,7 @@ import { swagMenuLO} from "./louisSwagPOM";
                 await menPage.setInput(menPage.addPassword, "secret_sauce");
                 await menPage.click(menPage.loginBtn);
                 await menPage.click(menPage.inventoryItem);
-            })
+            });
 
 
 
