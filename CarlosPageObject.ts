@@ -9,6 +9,8 @@ export class Swaglabs extends BasePage {
     productsLogo: By = By.xpath('//*[@id="header_container"]/div[2]/span')
     backPackAddBtn: By = By.xpath('//*[@id="add-to-cart-sauce-labs-backpack"]')
     backPackRmBtn: By = By.xpath('//*[@id="remove-sauce-labs-backpack"]')
+    bikeLightAddBtn: By = By.xpath('//*[@id="add-to-cart-sauce-labs-bike-light"]')
+
     shoppingCart: By = By.xpath('//*[@id="shopping_cart_container"]/a/span')
  
     emptyShoppingCart: By = By.xpath('//*[@id="shopping_cart_container"]/a')
@@ -34,6 +36,12 @@ export class Swaglabs extends BasePage {
      async addBackPack() {
         let backPackAdd = await this.getElement(this.backPackAddBtn)
         backPackAdd.click();
+        return
+     }
+
+     async addBikeLight() {
+        let bikeLightAdd = await this.getElement(this.bikeLightAddBtn)
+        bikeLightAdd.click();
         return
      }
 

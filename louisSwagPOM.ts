@@ -6,10 +6,10 @@ header: By= By.css('.login_wrapper')
 addUserName: By = By.xpath('//input[@name= "user-name"]')
 addPassword: By = By.xpath('//input[@name= "password"]')
 loginBtn: By = By.xpath('//input[@name= "login-button"]')
-inventoryItem: By = By.css('inventory_item_name')
-menuBtn: By = By.css('bm-burger-button')
-allItemsBtn: By =By.css('bm-item-list')
-logoutBtn: By = By.css('logout_sidebar_link')// Cannot seem to find the correct selector 
+menuBtn: By = By.xpath('//button[@id = "react-burger-menu-btn"]')
+allItemsBtn: By =By.xpath('(//a[@class="bm-item menu-item"])[1]')
+logoutBtn: By = By.xpath('(//a[@class="bm-item menu-item"])[3]')
+inventoryItem: By = By.xpath('(//img[@class="inventory_item_img"])[2]')
 constructor(driver: WebDriver){
     this.driver = driver
 

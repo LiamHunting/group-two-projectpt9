@@ -108,6 +108,33 @@ test('Adding BackPack', async () => {
 })
 
 
+test('Adding BikeLight', async () => {
+    const swaglabs = new Swaglabs()
+    await swaglabs.navigate()
+    await swaglabs.login("standard_user", "secret_sauce")
+    await swaglabs.addBikeLight();
+    let carQty = await swaglabs.getShoppingCartQty()
+    expect("1").toBe(carQty)
+    await swaglabs.driver.quit();
+   
+})
+
+test('Adding Backpack and BikeLight', async () => {
+    const swaglabs = new Swaglabs()
+    await swaglabs.navigate()
+    await swaglabs.login("standard_user", "secret_sauce")
+    await swaglabs.addBackPack();
+    await swaglabs.addBikeLight();
+    let carQty = await swaglabs.getShoppingCartQty()
+    expect("2").toBe(carQty)
+    await swaglabs.driver.quit();
+   
+})
+
+
+
+// Remove cart
+
 test('Removing BackPack', async () => {
     const swaglabs = new Swaglabs()
     await swaglabs.navigate()
