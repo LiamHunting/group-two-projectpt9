@@ -35,7 +35,6 @@ describe("Test for SwagLabs Webpage", () => {
         let lockoutError = await swagP.driver.findElement(swagP.lockedOutError).getText();
         expect(lockoutError).toContain("Epic sadface: Sorry, this user has been locked out.");
         await swagP.driver.quit();
-
     });
 
 });

@@ -30,6 +30,7 @@ export class swagLabsPage extends BasePage {
     fleeceJacketATC: By = By.xpath('//button[@name="add-to-cart-sauce-labs-fleece-jacket"]')
     onesieATC: By = By.xpath('//button[@name="add-to-cart-sauce-labs-onesie"]')
     redTShirtATC: By = By.xpath('//button[@name="add-to-cart-test.allthethings()-t-shirt-(red)"]')
+    
 
     constructor() {
         super({url: "https://www.saucedemo.com/"});
