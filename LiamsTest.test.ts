@@ -1,41 +1,41 @@
-import {BasePage} from "./basePage";
 import { AcceptedUsers } from "./LiamsLoginInfoPage";
 import { swagLabsPage } from "./LiamsBasePage";
-import {Builder, By, Capabilities, until, WebDriver, WebElement} from "selenium-webdriver"
+import {until} from "selenium-webdriver"
+const swagP = new swagLabsPage();
 
-const driver: WebDriver = new Builder().withCapabilities(Capabilities.chrome()).build();
+const Users = AcceptedUsers;
 
-const swagP = new swagLabsPage(driver);
 
-describe("Test for SwagLabs Webpage", () => {
-    beforeEach(async () => {
-        await swagP.navigate();
-    });
-    afterAll(async () => {
-        await driver.quit();
-    });
+let testLogin = async (Users) => {
+    await swagP.navigate()
+    await swagP.driver.wait(until.elementLocated(swagP.bot));
+    await swagP.setInput(swagP.userNameIpt, `${Users}`)
+    console.log(Users);
+    await swagP.setInput(swagP.passwordIpt, "secret_sauce");
+    await swagP.click(swagP.loginBtn);
+    await swagP.click(swagP.menuBtn);
+    await swagP.click(swagP.logoutBtn);
+
+};
+
+describe("Test for SwagLabs Webpage", () => { 
 
     test("Loggin in using accepted usernames", async () => {
-        
-        for (let i = 0; i < AcceptedUsers.length; i++ ) {
-        await driver.wait(until.elementLocated(swagP.bot));
-        await driver.findElement(swagP.userNameIpt).click();
-        await driver.findElement(swagP.userNameIpt).clear();
-        console.log(AcceptedUsers.at(i));
-        let user = AcceptedUsers.at(i);
-        await driver.findElement(swagP.userNameIpt).sendKeys(`${user}`);
-        await driver.findElement(swagP.passwordIpt).click();
-        await driver.findElement(swagP.passwordIpt).clear();
-        await driver.findElement(swagP.passwordIpt).sendKeys("secret_sauce");
-        await driver.findElement(swagP.loginBtn).click();
-        await driver.findElement(swagP.menuBtn).click();
-        await driver.findElement(swagP.logoutBtn).click();
-
-        }
-
+        for(let i = 0; i < Users.length; i++) {
+            await testLogin(Users[i]);
+        };
+        await swagP.driver.sleep(1000);
     });
-    test("login method functionality", async () => {
-        await swagP.login();
+    test("Testing locked out user, and verifying error message", async () => {
+        await swagP.driver.wait(until.elementLocated(swagP.bot));
+        await swagP.setInput(swagP.userNameIpt, "locked_out_user");
+        await swagP.setInput(swagP.passwordIpt, "secret_sauce");
+        await swagP.click(swagP.loginBtn);
+        await swagP.driver.wait(until.elementLocated(swagP.lockedOutError));
+        let lockoutError = await swagP.driver.findElement(swagP.lockedOutError).getText();
+        expect(lockoutError).toContain("Epic sadface: Sorry, this user has been locked out.");
+        await swagP.driver.quit();
+
     });
 
 });

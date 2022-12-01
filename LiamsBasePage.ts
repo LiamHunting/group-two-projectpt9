@@ -1,14 +1,14 @@
-import {By, WebDriver, until} from "selenium-webdriver"
+import {By, WebDriver, WebElement, until, Alert} from "selenium-webdriver"
+import { BasePage } from "./basePage"
 
-export class swagLabsPage {
-    driver: WebDriver;
-    url: string = "https://www.saucedemo.com/"
-
+export class swagLabsPage extends BasePage {
+   
     bot: By = By.xpath('//div[@class= "bot_column"]')
     userNameIpt: By = By.xpath('//input[@name= "user-name"]')
     passwordIpt: By = By.xpath('//input[@name= "password"]')
     loginBtn: By = By.xpath('//input[@name= "login-button"]')
     clearErrorBtn: By = By.xpath('//button[@class="error-button"]')
+    lockedOutError: By = By.xpath('//div[@class= "error-message-container error"]')
     appLogo: By = By.xpath('//div[@class="app_logo"]')
     shoppingCart: By = By.xpath('//a[@class="shopping_cart_link"]')
     contShoppingBtn: By = By.xpath('//button[@name="continue-shopping"]')
@@ -31,8 +31,8 @@ export class swagLabsPage {
     onesieATC: By = By.xpath('//button[@name="add-to-cart-sauce-labs-onesie"]')
     redTShirtATC: By = By.xpath('//button[@name="add-to-cart-test.allthethings()-t-shirt-(red)"]')
 
-    constructor(driver: WebDriver) {
-        this.driver = driver
+    constructor() {
+        super({url: "https://www.saucedemo.com/"});
     }
     async navigate() {
         await this.driver.get(this.url);
@@ -48,6 +48,4 @@ export class swagLabsPage {
         await this.driver.findElement(this.passwordIpt).sendKeys("secret_sauce");
         await this.driver.findElement(this.loginBtn).click();       
     };
-    
-
 };
